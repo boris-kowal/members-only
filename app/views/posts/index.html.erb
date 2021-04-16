@@ -1,0 +1,19 @@
+<% if user_signed_in? %>
+  <%= current_user.username %>
+<% else %>
+  <%= "You are not signed in" %>
+<% end %>
+<h1>List of posts</h1>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+    <%= post.title %>
+    <%=", Author: " + post.user.username if user_signed_in? %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "New Post", new_post_path %>
+<%= link_to "Sign up", new_user_registration_path %>
+<%= link_to "Sign in", new_user_session_path %>
+<%= link_to "Log out", destroy_user_session_path, :method => :delete %>
